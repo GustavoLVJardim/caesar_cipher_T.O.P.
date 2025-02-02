@@ -1,18 +1,21 @@
-alphabet = ("a".."z").to_a
-
-#any_number = 1
-#print alphabet
-#puts alphabet[-1 + any_number]
-
-any_string = 'zaza'
-new_string = []
-
-for char in any_string.chars
-  if alphabet.include?(char)
-    new = alphabet[alphabet.index(char) + 1]
-    new_string.push(new)
+def caesar_cipher(string, length)  
+  lower_alphabet = ("a".."z").to_a
+  higher_alphabet = ("A".."Z").to_a
+  new_string = [] 
+  
+  for char in string.chars
+    if lower_alphabet.include?(char)
+      new_char = lower_alphabet[(lower_alphabet.index(char) + length) % lower_alphabet.length]
+      new_string.push(new_char)
+    elsif higher_alphabet.include?(char)
+      new_char = higher_alphabet[(higher_alphabet.index(char) + length) % higher_alphabet.length]
+      new_string.push(new_char)
+    else
+      new_string.push(char)
+    end
   end
+
+  new_string.join
 end
 
-print "new_string: #{new_string}"
- 
+puts caesar_cipher("What a string!", 5)
